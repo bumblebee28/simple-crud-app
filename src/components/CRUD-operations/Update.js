@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Container } from "react-bootstrap";
+import Stack from "react-bootstrap/Stack";
 import Table from "react-bootstrap/Table";
+import Button from "react-bootstrap/Button";
 
 export default function Update() {
   const [data, setData] = useState([]);
-  const [newData, setNewData] = useState({ title: "", body: "" });
+  const [newData, setNewData] = useState({title: "", body: "" });
   const [selectedId, setSelectedId] = useState(null);
 
   useEffect(() => {
@@ -40,7 +42,7 @@ export default function Update() {
           datum.id === updatedData.id ? updatedData : datum
         );
         setData(newDataArray);
-        setNewData({ title: "", body: "" });
+        setNewData({title: "", body: "" });
         setSelectedId(null);
       });
   };
@@ -49,6 +51,11 @@ export default function Update() {
     <div>
       <Container>
         <form className="mb-5">
+        <Stack
+          direction="horizontal"
+          gap={5}
+          className="col-md-2 mx-auto my-4 justify-content-center"
+        >
           <input
             type="number"
             name="id"
@@ -69,9 +76,10 @@ export default function Update() {
             value={newData.body}
             onChange={handleInputChange}
           />
-          <button type="button" onClick={handleUpdateClick}>
+          <Button type="button" onClick={handleUpdateClick}>
             Update
-          </button>
+          </Button>
+          </Stack>
         </form>
         <Container className="overflow-scroll" style={{ height: 400 }}>
           <Table striped bordered hover>
